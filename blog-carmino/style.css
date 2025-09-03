@@ -1,13 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Playfair Display", serif;
 }
 
-.areas-grid {
-    display: grid;
+.layout {
+    display: grid;  /* Transforma a div em um container Grid, permitindo organizar elementos em linhas e colunas */
+
+    grid-template-areas: 
+    "header header header" /* Define que a área 'header' ocupa 3 colunas (topo da página) */
+    "subnav subnav subnav" /* Define que a área 'subnav' ocupa 3 colunas, logo abaixo do header */
+    "main main aside"      /* Define que 'main' ocupa 2 colunas à esquerda e 'aside' 1 coluna à direita */
+    "footer footer footer"; /* Define que o 'footer' ocupa 3 colunas na parte de baixo */           
+    grid-template-columns: 2fr 2fr 1fr; /*Define largura das colunas: as duas primeiras colunas ocupam 2 frações cada, a terceira fração*/
+    grid-template-rows: auto; /* Define que as linhas terão altura automática de acordo com o conteúdo */
+    gap:10px;
+    padding: 0 10px;
 }
 
-.header h1 {
-    color: blue;
+.header {
+    grid-area: header;
+}
+
+.subnav {
+    grid-area: subnav;
+}
+
+.main {
+    grid-area: main;
+}
+
+.aside {
+    grid-area: aside;
+}
+
+.footer {
+    grid-area: footer;
+}
+
+@media (max-width: 767px) { /* Define um breakpoint para telas menores que 768px, onde você pode reorganizar o grid */
+    .layout {
+        grid-template-areas: 
+            "header"
+            "subnav"
+            "main"
+            "aside"
+            "footer";
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        gap: 10px;
+        padding: 0 10px;
+    }
+
+    .header {
+        grid-area: header;
+    }
+
+    .subnav {
+        grid-area: subnav;
+    }
+
+    .main {
+        grid-area: main;
+    }
+    .main img {
+        max-width: 70%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+    }
+        
+    
+
+    .aside {
+        grid-area: aside;
+    }
+
+    .footer {
+        grid-area: footer;
+    }
 }
