@@ -7,9 +7,37 @@
     font-family: "Playfair Display", serif;
 }
 
-.layout {
-    display: grid;  /* Transforma a div em um container Grid, permitindo organizar elementos em linhas e colunas */
+/* esboço ASCII 
++------------------------+
+|    header             | 
+|   subnav              |
++-----------------------+
+| aside  |  main       |
+|        |             |
+|        |            |
+|        |           |
+|        |           |
++--------------------+
+|        footer      |
+*/
+html {
+  scroll-behavior: smooth;   /* rolagem suave */
+  scroll-padding-top: 80px;  /* deixa espaço pro header fixo */
+}
+:root {
+    --h1: #4682B4;
+    --li: #3f75a0;
+    --h2: #598fba;
+    --h3: #6598c3;
+    --p: #165080;
+    --border:#6598c3;
+    --hover:#598fba;
+    --backgroud-color: #c1daee;
+}
 
+@media(min-width:768px) {
+    .layout {
+    display: grid;  /* Transforma a div em um container Grid, permitindo organizar elementos em linhas e colunas */
     grid-template-areas: 
     "header header header" /* Define que a área 'header' ocupa 3 colunas (topo da página) */
     "subnav subnav subnav" /* Define que a área 'subnav' ocupa 3 colunas, logo abaixo do header */
@@ -17,69 +45,167 @@
     "footer footer footer"; /* Define que o 'footer' ocupa 3 colunas na parte de baixo */           
     grid-template-columns: 2fr 2fr 1fr; /*Define largura das colunas: as duas primeiras colunas ocupam 2 frações cada, a terceira fração*/
     grid-template-rows: auto; /* Define que as linhas terão altura automática de acordo com o conteúdo */
-    gap:10px;
-    padding: 0 10px;
+   
 }
 
 .header {
     grid-area: header;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.header h1 {
+    color: var(--h1);
+    padding: 10px;
+}
+.header img {
+    width: 200px;
 }
 
 .subnav {
     grid-area: subnav;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    display: flex;
+    flex-direction: column; /* lista + footer em coluna */
+    gap: 10px; /* espaço entre lista e footer */
+    padding: 30px 0; 
+
+}
+.subnav-list  {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 40px;
+    list-style: none;
+    padding: 25px;
+    margin: 0;
+    align-items: center;
+    background-color: var(--backgroud-color);
+    border-radius: 15px;
 }
 
+.subnav-list li a {
+    font-size: 20px;
+    color: var(--li);
+    text-decoration: none;
+}
+
+
 .main {
+    margin-top: 0;
+    padding-top: 0;
     grid-area: main;
+    display: flex;
+    flex-direction: column;
+}
+
+.main section {        /* todos os tópicos */
+  display: none;       /* escondidos por padrão */
+}
+
+.main section:target { /* mostra o selecionado */
+  display: block;
+}
+
+.main img {
+    width: 450px;
+}
+.main h2 {
+    color: var(--h2);
+    font-size: 25px;
+    justify-content: center;
+    padding: 10px;
+    margin: 5px;
+}
+.main h3 {
+    color: var(--h3);
+    font-size: 25px;
+    padding: 10px;
+    margin: 5px;
+}
+.main p {
+    color: var(--p);
+    font-size: 20px;
+    margin: 5px;
 }
 
 .aside {
     grid-area: aside;
+    border: solid 2px var(--border);
+    width: 250px;
+    height: 150px;
+    text-align: center;
+    color: var(--p);
+    background-color: var(--backgroud-color);
+    border-radius: 15px;  
+    font-size: 20px;
+    margin: 20px;
 }
 
 .footer {
-    grid-area: footer;
+     display: none;
+    margin-top: 30px;
+    color: var(--p);
+    text-align: start;
 }
 
-@media (max-width: 767px) { /* Define um breakpoint para telas menores que 768px, onde você pode reorganizar o grid */
-    .layout {
-        grid-template-areas: 
-            "header"
-            "subnav"
-            "main"
-            "aside"
-            "footer";
-        grid-template-columns: 1fr;
-        grid-template-rows: auto;
-        gap: 10px;
-        padding: 0 10px;
-    }
+#terapias:target .footer {
+    display: block;
+}
 
-    .header {
-        grid-area: header;
-    }
 
-    .subnav {
-        grid-area: subnav;
-    }
+h2 {
+    scroll-margin-top: 80px; /* ajuste conforme a altura do seu header */
+}
+}
+/*------------------------------*/
 
-    .main {
-        grid-area: main;
-    }
-    .main img {
-        max-width: 70%;
-        height: auto;
-        display: block;
-        margin: 0 auto;
-    }
-        
-    
+@media(max-width: 767px){
+    @media(max-width: 767px) {
+  .layout {
+    display: grid;
+    grid-template-areas:
+      "header"
+      "subnav"
+      "main"
+      "aside"
+      "footer";
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 20px;
+    padding: 0 15px;
+  }
 
-    .aside {
-        grid-area: aside;
-    }
+  .main img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
 
-    .footer {
-        grid-area: footer;
-    }
+  .header h1 {
+    font-size: clamp(1.5rem, 5vw, 2rem);
+    text-align: center;
+  }
+
+  .subnav-list {
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+    align-items: stretch;
+  }
+
+  .aside {
+    width: 100%;
+    height: auto;
+    margin: 0;
+  }
+
+  .footer {
+    text-align: center;
+    padding: 20px 0;
+  }
+}
+
 }
