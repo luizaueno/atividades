@@ -75,6 +75,7 @@ html {
 }
 .subnav-list  {
     display: flex;
+    flex-wrap: wrap;
     width: 100%;
     justify-content: center;
     gap: 40px;
@@ -130,6 +131,53 @@ html {
     font-size: 20px;
     margin: 5px;
 }
+
+.intro {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 2rem;
+  align-items: flex-start;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.chips {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding:15px;
+  border-radius: 10px;
+  background-color:transparent;
+  cursor: pointer;
+}
+
+.chip {
+  padding: 0.4rem 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background-color:var(--backgroud-color);
+  color: var(--p);
+  text-decoration: none;
+  margin: 0.3rem;
+  display: inline-block;
+}
+
+.chip:hover {
+  background-color: var(--hover);
+  color: white;
+}
+
+.chip:focus-visible {
+  outline: 2px dashed var(--h1);
+  outline-offset: 2px;
+}
+
+.chip.is-active {
+  background-color: var(--h1);
+  color: white;
+  border-color: var(--h1);
+}
+
 
 .aside {
     grid-area: aside;
