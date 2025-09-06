@@ -135,20 +135,21 @@ html {
 .intro {
   display: flex;
   flex-direction: row-reverse;
-  gap: 2rem;
-  align-items: flex-start;
-  margin-left: 0;
-  padding-left: 0;
+  gap: 1rem;
+  align-items: flex-start; /* Corrigido */
+  margin: 0;
+  padding: 0;
 }
 
 .chips {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  padding:15px;
-  border-radius: 10px;
+  gap: 0.25rem;
+  padding:0;
+  border-radius: 8px;
   background-color:transparent;
   cursor: pointer;
+  margin: 0;
 }
 
 .chip {
@@ -210,8 +211,8 @@ h2 {
 }
 /*------------------------------*/
 
-@media(max-width: 767px){
-    @media(max-width: 767px) {
+
+ @media(max-width: 767px) {
   .layout {
     display: grid;
     grid-template-areas:
@@ -222,38 +223,119 @@ h2 {
       "footer";
     grid-template-columns: 1fr;
     grid-template-rows: auto;
-    gap: 20px;
+    gap: 10px;
     padding: 0 15px;
   }
-
-  .main img {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
+  
+  .header img {
+    margin-top: 40px;
+    width: 120px;
+    
+  }
+  .header h1{
+    color: var(--h1);
+    position: relative;
+    top: 100px;
+    left: 160px;
+    width: 300px;
+  
   }
 
-  .header h1 {
-    font-size: clamp(1.5rem, 5vw, 2rem);
-    text-align: center;
-  }
+  .subnav {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  gap: 1rem;
+}
 
   .subnav-list {
+    display: flex;
+    flex: 1;
     flex-direction: column;
-    gap: 15px;
-    padding: 15px;
-    align-items: stretch;
+    flex-wrap: nowrap;
+    overflow-x:auto;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 0.5rem;
   }
 
-  .aside {
-    width: 100%;
-    height: auto;
+  .subnav-list li {
+    padding: 0;
     margin: 0;
   }
 
-  .footer {
-    text-align: center;
-    padding: 20px 0;
+  .subnav-list li a {
+    text-decoration: none;
+    white-space: nowrap;
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: var(--backgroud-color);
+    border-radius: 4px;
+    color:var(--p)
   }
+
+  .chip {
+    display: flex;
+    flex-direction: column;
+    width: 120px;
+    margin: 10px;
+    color: var(--h1);
+    border: 2px solid ;
+    padding: 5px;
+    margin-bottom: 16px;
+    cursor: pointer;
+  }
+
+
+  .content-section {
+  display: none;
 }
 
+.content-section.active {
+  display: block;
+}
+
+.main img {
+    width: 70%;
+    max-width: 100%;
+    height: auto;
+
+  }
+
+  .main h2{
+    margin-top: 15px;
+    color: var(--h2);
+  }
+
+  .main p {
+    color: var(--p);
+    width: 450px;
+  }
+
+  .main h3 {
+    color: var(--h3);
+  }
+  .footer {
+    color: var(--p);
+    flex: 0 0 120px;
+  }
+
+  .footer ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .aside {
+     position: absolute;
+     top: 230px;
+    right: 0px;
+    width: 140px;
+    padding: 10px;
+    color: var(--p);
+  }
+
+  
 }
